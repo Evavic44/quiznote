@@ -1,5 +1,5 @@
 {
-  "name": "career-companion",
+  "name": "fun-notes",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -12,7 +12,8 @@
     "@google-cloud/vertexai": "^1.1.0",
     "next": "14.2.3",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "sharp": "^0.33.3"
   },
   "devDependencies": {
     "@types/node": "^20",
