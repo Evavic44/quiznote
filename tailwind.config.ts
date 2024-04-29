@@ -8,10 +8,19 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      colors: {
+        primary: "#0E85F2",
+        secondary: "#006CD0",
+        error: "#FB3737",
+        success: "#19DB7E",
+        dark: "#222222",
+        medium: "#555555",
+        light: "#fdfcff",
+        sunny: "#faf8f0",
+      },
+      fontFamily: {
+        geistmono: ["var(--geistmono)"],
+        geistsans: ["var(--geist-sans)"],
       },
     },
   },

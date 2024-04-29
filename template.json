@@ -1,0 +1,27 @@
+{
+  "topic": "",
+  "quiz": [
+    {
+      "id": 1,
+      "question": "",
+      "description": "",
+      "options": {
+        "a": "",
+        "b": "",
+        "c": "",
+        "d": ""
+      },
+      "answer": "",
+      "resources": [
+        {
+          "title": "",
+          "link": ""
+        },
+        {
+          "title": "",
+          "link": ""
+        }
+      ]
+    }
+  ]
+}
