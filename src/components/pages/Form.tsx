@@ -23,13 +23,14 @@ export default function Form({
         </header>
         <div className="flex flex-col gap-3 mb-4">
           <TabComponent step={step} onSetStep={setStep}>
-            <label htmlFor="subject" className="block mb-3">
+            <label htmlFor="topic" className="block mb-3">
               <span className="block text-sm font-semibold text-zinc-600 mb-2">
                 Topic
               </span>
               <input
                 type="text"
-                id="subject"
+                name="topic"
+                id="topic"
                 placeholder="Object-oriented programming in Java"
                 className="font-geistmono appearance-none w-full p-3 border border-zinc-200 placeholder-zinc-400 text-zinc-700 rounded-md focus:outline-none focus:ring-zinc-300 text-sm"
               />

@@ -6,6 +6,7 @@ export default function TextNote() {
       </span>
       <textarea
         id="notes"
+        name="notes"
         cols={30}
         rows={10}
         required

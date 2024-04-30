@@ -4,6 +4,8 @@ type StreamStatus = "idle" | "streaming" | "done";
 
 interface StoreState {
   status: StreamStatus;
+  quizStream: string;
+  setQuizStream: (stream: string) => void;
 }
 
 interface StoreActions extends StoreState {
@@ -12,5 +14,7 @@ interface StoreActions extends StoreState {
 
 export const useFormStore = create<StoreState & StoreActions>((set) => ({
   status: "idle",
+  quizStream: "",
+  setQuizStream: (stream) => set({ quizStream: stream }),
   setStatus: (status) => set({ status }),
 }));

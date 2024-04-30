@@ -4,7 +4,7 @@ import { useFormStore } from "@/store/form";
 import Form from "./Form";
 import FormField from "@/components/pages/FormField";
 import Loading from "@/components/shared/Loading";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useQuizStore } from "@/store/quiz";
 
 export default function FormContainer() {
@@ -34,8 +34,6 @@ export default function FormContainer() {
           setStreamContent((prev) =>
             prev.replace("```json", "").replace("```", "")
           );
-          console.log(streamContent);
-          setQuizzes(JSON.parse(streamContent));
           setStatus("done");
 
           return;
@@ -46,6 +44,13 @@ export default function FormContainer() {
 
     setStatus("done");
   }
+
+  useEffect(() => {
+    if (status === "done") {
+      const data = JSON.parse(streamContent);
+      setQuizzes(data);
+    }
+  }, [status, setQuizzes, streamContent]);
 
   return (
     <section>

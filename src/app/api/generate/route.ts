@@ -4,6 +4,7 @@ import {
   VertexAI,
 } from "@google-cloud/vertexai";
 import { StreamingTextResponse } from "ai";
+import { NextResponse } from "next/server";
 
 // // Initialize Vertex with your Cloud project and location
 const vertex_ai = new VertexAI({
@@ -63,6 +64,13 @@ export async function POST(req: Request) {
   const notes = formData.get("notes");
   const totalQuizQuestions = formData.get("quizCount");
   const difficulty = formData.get("difficulty");
+  const topic = formData.get("topic");
+
+  if (files.length < 1 && !notes) {
+    return new NextResponse("Please provide either a file or notes", {
+      status: 400,
+    });
+  }
 
   const text1 = {
     text: `You are an all-rounder tutor with professional expertise in different fields. You are to generate a list of quiz questions from the document(s) with a difficutly of ${
@@ -113,7 +121,8 @@ export async function POST(req: Request) {
     },
   }));
 
-  const data = files.length ? filesData : [{ text: notes as string }];
+  const data =
+    files.length < 0 ? filesData : [{ text: notes?.toString() || "" }];
 
   const body = {
     contents: [{ role: "user", parts: [text1, ...data, text2] }],
