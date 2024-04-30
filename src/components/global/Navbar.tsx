@@ -8,6 +8,7 @@ import HamburgerButton from "./Hamburger";
 import { useState } from "react";
 import { GithubIcon } from "../icons";
 import { navlinks } from "@/assets/data/navlinks";
+import Button from "../shared/Button";
 
 export default function Navbar() {
   const [toggleMenu, setToggleMenu] = useState(false);
@@ -46,14 +47,12 @@ export default function Navbar() {
 
         <div className="order-3">
           <div className="md:flex hidden items-center gap-x-6">
-            <Link
-              href="https://github.com/Evavic44/fun-notes"
-              className="flex items-center gap-x-2 bg-dark text-white py-2 px-4 text-sm text-center rounded-lg"
-              rel="no-referrer noopener"
-              target="_blank"
-            >
-              56 Stars <GithubIcon />
-            </Link>
+            <Button
+              text="56 Stars"
+              url="https://github.com/Evavic44/fun-notes"
+              icon={<GithubIcon />}
+              external
+            />
           </div>
           <HamburgerButton toggleMenu={toggleMenu} onToggle={setToggleMenu} />
         </div>

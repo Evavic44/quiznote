@@ -6,6 +6,7 @@ type ButtonType = {
   icon?: React.ReactNode;
   className?: string;
   url: string;
+  external?: boolean;
 };
 
 export default function Button({
@@ -14,11 +15,14 @@ export default function Button({
   icon,
   className,
   url,
+  external,
 }: ButtonType) {
   return (
     <Link
       href={url}
-      className={`flex items-center justify-between text-center gap-x-2 font-medium px-4 py-2 rounded-xl border duration-200 ${
+      rel={external ? "noreferrer noopener" : ""}
+      target={external ? "_blank" : ""}
+      className={`flex items-center justify-between text-center gap-x-2 px-4 py-2 rounded-full border duration-200 text-sm ${
         theme === "primary"
           ? "bg-primary text-white hover:bg-secondary border-transparent"
           : theme === "light"

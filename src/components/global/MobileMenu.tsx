@@ -3,7 +3,6 @@
 import { navlinks } from "@/assets/data/navlinks";
 import Link from "next/link";
 import { Dispatch, SetStateAction, useEffect } from "react";
-import { usePathname } from "next/navigation";
 
 export default function MobileMenu({
   toggleMenu,
@@ -12,7 +11,6 @@ export default function MobileMenu({
   toggleMenu: boolean;
   onToggle: Dispatch<SetStateAction<boolean>>;
 }) {
-  const pathname = usePathname();
   useEffect(() => {
     document.addEventListener("keydown", (e: KeyboardEvent) => {
       if (e.key === "Escape" && toggleMenu) {
@@ -20,8 +18,6 @@ export default function MobileMenu({
       }
     });
   }, [onToggle, toggleMenu]);
-
-  console.log(pathname);
 
   return (
     <div>

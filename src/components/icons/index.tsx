@@ -182,3 +182,43 @@ export function PhotoIcon(props: SVGAttributes<SVGElement>) {
     </svg>
   );
 }
+
+export function ImageIcon(props: SVGAttributes<SVGElement>) {
+  return (
+    <svg
+      width={15}
+      height={15}
+      viewBox="0 0 16 16"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M0 2.4C0 1.07452 1.07452 0 2.4 0H13.6C14.9255 0 16 1.07452 16 2.4V13.6C16 14.9255 14.9255 16 13.6 16H2.4C1.07452 16 0 14.9255 0 13.6V2.4ZM4.4 6.4C5.50457 6.4 6.4 5.50457 6.4 4.4C6.4 3.29543 5.50457 2.4 4.4 2.4C3.29543 2.4 2.4 3.29543 2.4 4.4C2.4 5.50457 3.29543 6.4 4.4 6.4ZM6.68288 9.08288L8.4 10.8L12.9171 6.28284C13.1691 6.03086 13.6 6.20932 13.6 6.56568V13.6H2.4V12.8L6.11716 9.08288C6.27337 8.92664 6.52664 8.92664 6.68288 9.08288Z"
+        fill="#0E85F2"
+      />
+    </svg>
+  );
+}
+
+export function DocumentIcon(props: SVGAttributes<SVGElement>) {
+  return (
+    <svg
+      width={16}
+      height={16}
+      viewBox="0 0 15 15"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M1 1.5C1 0.671573 1.67157 0 2.5 0H10.7071L14 3.29289V13.5C14 14.3284 13.3284 15 12.5 15H2.5C1.67157 15 1 14.3284 1 13.5V1.5ZM4.00041 3.99707L9.00041 4.00035L8.99976 5.00035L3.99976 4.99707L4.00041 3.99707ZM11 6.99542H4V7.99542H11V6.99542ZM11.0006 10.0005L4.0006 9.99292L3.99951 10.9929L10.9995 11.0005L11.0006 10.0005Z"
+        fill="#2F88FF"
+      />
+    </svg>
+  );
+}
