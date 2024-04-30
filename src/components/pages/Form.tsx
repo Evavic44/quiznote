@@ -8,10 +8,42 @@ import TextNote from "./TextNote";
 
 export default function Form() {
   const [step, setStep] = useState(0);
+  const [streamState, setStreamState] = useState<"idle" | "streaming" | "done">(
+    "idle"
+  );
+  const [streamContent, setStreamContent] = useState<string>("");
+
+  async function generateQuiz(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setStreamState("streaming");
+
+    const formData = new FormData(e.currentTarget);
+
+    const res = await fetch("/api/generate", {
+      method: "POST",
+      body: formData,
+    });
+
+    if (res.body) {
+      const reader = res.body.pipeThrough(new TextDecoderStream()).getReader();
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) {
+          setStreamState("done");
+          console.log(streamContent);
+          return;
+        }
+        // remove data: ... \n\n and add to streamContent
+        setStreamContent((prev) => prev + value.slice(7, value.length - 2));
+      }
+    }
+
+    setStreamState("done");
+  }
 
   return (
     <FormContainer>
-      <form action="#">
+      <form onSubmit={generateQuiz}>
         <header className="text-center mb-10">
           <h2 className="text-lg font-semibold mb-1">Add Notes</h2>
           <p className="text-xs text-zinc-400">
@@ -19,6 +51,7 @@ export default function Form() {
           </p>
         </header>
 
+        {streamContent}
         <div className="flex flex-col gap-3 mb-4">
           <TabComponent step={step} onSetStep={setStep}>
             {step === 0 ? <TextNote /> : <FileNote />}
@@ -73,8 +106,11 @@ export default function Form() {
           </label>
         </fieldset>
 
-        <button className="flex items-center justify-center w-full text-center max-w-lg mx-auto duration-200 text-sm gap-x-2 bg-primary hover:bg-secondary text-white font-medium px-4 py-3 rounded-full">
-          Generate Quiz
+        <button
+          disabled={streamState === "streaming"}
+          className="flex items-center justify-center w-full text-center max-w-lg mx-auto duration-200 text-sm gap-x-2 bg-primary hover:bg-secondary text-white font-medium px-4 py-3 rounded-full"
+        >
+          {streamState === "streaming" ? "Generating..." : "Generate Quiz"}
         </button>
       </form>
     </FormContainer>

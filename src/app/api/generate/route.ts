@@ -40,35 +40,6 @@ const generativeModel = vertex_ai.preview.getGenerativeModel({
   ],
 });
 
-const text1 = {
-  text: `You are an all-rounder tutor with professional expertise in different fields. You are to generate a list of quiz questions from the document(s).`,
-};
-const text2 = {
-  text: `You response should be in JSON as an array of the object below. Respond with 20 different questions.
-{
- \"id\": 1,
- \"question\": \"\",
- \"description\": \"\",
- \"options\": {
-   \"a\": \"\",
-   \"b\": \"\",
-   \"c\": \"\",
-   \"d\": \"\"
- },
- \"answer\": \"\",
- \"resources\": [
-   {
-     \"title\": \"\",
-     \"link\": \"\"
-   },
-   {
-     \"title\": \"\",
-     \"link\": \"\"
-   }
- ]
-}`,
-};
-
 function iteratorToStream(iterator: any) {
   return new ReadableStream({
     async pull(controller) {
@@ -88,12 +59,63 @@ function iteratorToStream(iterator: any) {
 export async function POST(req: Request) {
   const formData = await req.formData();
   const files = formData.getAll("files") as File[];
-  const notes = formData.get("note");
+  const notes = formData.get("notes");
+  const totalQuizQuestions = formData.get("quiz-count");
+  const difficulty = formData.get("difficulty");
 
-  // Can't view files from postman but notes are working
-  //   console.log(files, notes);
+  const text1 = {
+    text: `You are an all-rounder tutor with professional expertise in different fields. You are to generate a list of quiz questions from the document(s) with a difficutly of ${
+      difficulty || "Easy"
+    }.`,
+  };
+  const text2 = {
+    text: `You response should be in JSON as an array of the object below. Respond with ${
+      totalQuizQuestions || 20
+    } different questions.
+  {
+   \"id\": 1,
+   \"question\": \"\",
+   \"description\": \"\",
+   \"options\": {
+     \"a\": \"\",
+     \"b\": \"\",
+     \"c\": \"\",
+     \"d\": \"\"
+   },
+   \"answer\": \"\",
+   \"resources\": [
+     {
+       \"title\": \"\",
+       \"link\": \"\"
+     },
+     {
+       \"title\": \"\",
+       \"link\": \"\"
+     }
+   ]
+  }`,
+  };
+
+  const filesBase64 = await Promise.all(
+    files.map(async (file) => {
+      const arrayBuffer = await file.arrayBuffer();
+      const buffer = Buffer.from(arrayBuffer);
+      // return "data:" + file.type + ";base64," + buffer.toString("base64");
+      return buffer.toString("base64");
+    })
+  );
+
+  const filesData = filesBase64.map((b64, i) => ({
+    inlineData: {
+      mimeType: files[i].type,
+      data: b64,
+    },
+  }));
+
+  const data = files.length ? filesData : [{ text: notes as string }];
+
   const body = {
-    contents: [{ role: "user", parts: [text1, text2] }],
+    contents: [{ role: "user", parts: [text1, ...data, text2] }],
   };
 
   const resp = await generativeModel.generateContentStream(body);
