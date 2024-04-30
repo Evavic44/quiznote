@@ -50,7 +50,8 @@ function iteratorToStream(iterator: any) {
       } else {
         const data = value.candidates[0].content.parts[0].text;
 
-        controller.enqueue(`data: ${data}\n\n`);
+        // controller.enqueue(`data: ${data}\n\n`);
+        controller.enqueue(data);
       }
     },
   });
@@ -60,7 +61,7 @@ export async function POST(req: Request) {
   const formData = await req.formData();
   const files = formData.getAll("files") as File[];
   const notes = formData.get("notes");
-  const totalQuizQuestions = formData.get("quiz-count");
+  const totalQuizQuestions = formData.get("quizCount");
   const difficulty = formData.get("difficulty");
 
   const text1 = {
