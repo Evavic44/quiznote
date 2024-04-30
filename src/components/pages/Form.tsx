@@ -1,16 +1,18 @@
-"use client";
-
 import { useState } from "react";
-import FormContainer from "../shared/FormContainer";
-import TabComponent from "../shared/TabComponent";
-import FileNote from "./FileNote";
-import TextNote from "./TextNote";
+import TabComponent from "@/components/shared/TabComponent";
+import FileNote from "@/components/pages/FileNote";
+import TextNote from "@/components/pages/TextNote";
+import FormField from "@/components/pages/FormField";
+import { useFormStore } from "@/store/form";
 
 export default function Form() {
   const [step, setStep] = useState(0);
+  const form = useFormStore((state) => state.form);
+
+  console.log("Form", form);
 
   return (
-    <FormContainer>
+    <FormField>
       <form action="#">
         <header className="text-center mb-10">
           <h2 className="text-lg font-semibold mb-1">Add Notes</h2>
@@ -21,6 +23,17 @@ export default function Form() {
 
         <div className="flex flex-col gap-3 mb-4">
           <TabComponent step={step} onSetStep={setStep}>
+            <label htmlFor="subject" className="block mb-3">
+              <span className="block text-sm font-semibold text-zinc-600 mb-2">
+                Topic
+              </span>
+              <input
+                type="text"
+                id="subject"
+                placeholder="Object-oriented programming in Java"
+                className="font-geistmono appearance-none w-full p-3 border border-zinc-200 placeholder-zinc-400 text-zinc-700 rounded-md focus:outline-none focus:ring-zinc-300 text-sm"
+              />
+            </label>
             {step === 0 ? <TextNote /> : <FileNote />}
           </TabComponent>
         </div>
@@ -42,15 +55,15 @@ export default function Form() {
             </select>
           </label>
 
-          <label htmlFor="quiz-count">
+          <label htmlFor="quizCount">
             <p className="text-sm mb-2 text-zinc-500">
               How many quizzes do you want to generate?
             </p>
 
             <select
               className="font-geistmono block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-zinc-300 focus:ring-2 focus:ring-inset focus:ring-primary sm:max-w-xs text-sm"
-              name="quiz-count"
-              id="quiz-count"
+              name="quizCount"
+              id="quizCount"
             >
               <option value="10">10</option>
               <option value="15">15</option>
@@ -77,6 +90,6 @@ export default function Form() {
           Generate Quiz
         </button>
       </form>
-    </FormContainer>
+    </FormField>
   );
 }
