@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction, useState } from "react";
-import { DocumentIcon, ImageIcon } from "../icons";
+import { DocumentIcon, ImageIcon, StarIcon } from "../icons";
 
 const tabs = [
   {
@@ -31,7 +31,7 @@ export default function TabComponent({
             onClick={() => onSetStep(tab.id)}
             key={tab.id}
             type="button"
-            className={`flex items-center gap-x-2 p-3 rounded-t-lg duration-300 ${
+            className={`flex items-center gap-x-2 p-3 rounded-t-lg duration-300 sm:text-base text-sm ${
               step === tab.id ? "bg-zinc-100" : null
             }`}
           >

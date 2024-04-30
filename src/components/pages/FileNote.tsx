@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Dispatch, SetStateAction } from "react";
 import { PhotoIcon } from "@/components/icons";
 
 export default function FileNote() {

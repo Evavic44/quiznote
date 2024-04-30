@@ -1,3 +1,4 @@
+import BugReport from "@/components/global/BugReport";
 import Navbar from "@/components/global/Navbar";
 import Form from "@/components/pages/Form";
 import Container from "@/components/shared/Container";
@@ -6,7 +7,7 @@ import Header from "@/components/shared/Header";
 
 export default function Home() {
   return (
-    <main>
+    <main className="relative">
       <Navbar />
       <Container className="mt-40">
         <Header
@@ -16,6 +17,7 @@ export default function Home() {
       </Container>
       <Form />
       <GeminiBadge />
+      <BugReport />
     </main>
   );
 }

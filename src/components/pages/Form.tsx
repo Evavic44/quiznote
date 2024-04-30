@@ -10,8 +10,8 @@ export default function Form() {
   const [step, setStep] = useState(0);
 
   return (
-    <form action="#" className="lg:px-0 px-6">
-      <FormContainer>
+    <FormContainer>
+      <form action="#">
         <header className="text-center mb-10">
           <h2 className="text-lg font-semibold mb-1">Add Notes</h2>
           <p className="text-xs text-zinc-400">
@@ -66,9 +66,9 @@ export default function Form() {
               name="timer"
               id="timer"
             >
-              <option value="10">5 min</option>
-              <option value="15">10 min </option>
-              <option value="20">15 min</option>
+              <option value="5">5 min</option>
+              <option value="10">10 min </option>
+              <option value="15">15 min</option>
             </select>
           </label>
         </fieldset>
@@ -76,7 +76,7 @@ export default function Form() {
         <button className="flex items-center justify-center w-full text-center max-w-lg mx-auto duration-200 text-sm gap-x-2 bg-primary hover:bg-secondary text-white font-medium px-4 py-3 rounded-full">
           Generate Quiz
         </button>
-      </FormContainer>
-    </form>
+      </form>
+    </FormContainer>
   );
 }
