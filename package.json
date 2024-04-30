@@ -1,5 +1,5 @@
 {
-  "name": "fun-notes",
+  "name": "quiznotes",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -11,6 +11,8 @@
   "dependencies": {
     "@headlessui/react": "^1.7.19",
     "@tailwindcss/forms": "^0.5.7",
+    "@google-cloud/vertexai": "^1.1.0",
+    "ai": "^3.0.35",
     "next": "14.2.3",
     "react": "^18",
     "react-dom": "^18",
