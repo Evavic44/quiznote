@@ -37,6 +37,7 @@ export default function FileNote() {
                   id="file-upload"
                   name="file-upload"
                   type="file"
+                  required
                   className="sr-only"
                 />
               </label>
