@@ -1,19 +1,22 @@
-import { ChangeEvent, useState } from "react";
+import { useEffect, useState } from "react";
 
-export default function CountdownTimer() {
-  const [count, setCount] = useState(0);
-  const [step, setStep] = useState(1);
+interface TimerProps {
+  minutes: number;
+}
 
-  const date = new Date("june 21 2027");
-  date.setDate(date.getDate() + count);
+export default function CountdownTimer({ minutes }: TimerProps) {
+  const [timeLeft, setTimeLeft] = useState(minutes * 60);
 
-  const defineCount = function (e: ChangeEvent<HTMLInputElement>) {
-    setCount(Number(e.target.value));
-  };
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTimeLeft((prevTime) => (prevTime > 0 ? prevTime - 1 : 0));
+    }, 1000);
 
-  const defineStep = function (e: ChangeEvent<HTMLInputElement>) {
-    setStep(Number(e.target.value));
-  };
+    return () => clearInterval(timer);
+  }, []);
+
+  const displayMinutes = Math.floor(timeLeft / 60);
+  const displaySeconds = timeLeft % 60;
 
   return (
     <div className="flex flex-col self-center text-center gap-4 pt-6">
@@ -21,7 +24,9 @@ export default function CountdownTimer() {
         dateTime=""
         className="font-geistmono text-zinc-800 sm:text-4xl text-3xl font-bold tracking-widest border border-zinc-300 rounded-full px-8 py-4"
       >
-        10:00
+        {`${displayMinutes < 10 ? "0" + displayMinutes : displayMinutes}:${
+          displaySeconds < 10 ? "0" + displaySeconds : displaySeconds
+        }`}
       </time>
       <span className="tet-xs text-zinc-500">Countdown</span>
     </div>

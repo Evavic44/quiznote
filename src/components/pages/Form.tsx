@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import TabComponent from "@/components/shared/TabComponent";
 import FileNote from "@/components/pages/FileNote";
 import TextNote from "@/components/pages/TextNote";
@@ -7,8 +7,12 @@ import { useFormStore } from "@/store/form";
 
 export default function Form({
   onSubmit,
+  timer,
+  onSetTimer,
 }: {
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+  timer: number;
+  onSetTimer: Dispatch<SetStateAction<number>>;
 }) {
   const [step, setStep] = useState(0);
 
@@ -80,6 +84,8 @@ export default function Form({
               className="font-geistmono block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-zinc-300 focus:ring-2 focus:ring-inset focus:ring-primary sm:max-w-xs text-sm"
               name="timer"
               id="timer"
+              value={timer}
+              onChange={(e) => onSetTimer(+e.target.value)}
             >
               <option value="5">5 min</option>
               <option value="10">10 min </option>

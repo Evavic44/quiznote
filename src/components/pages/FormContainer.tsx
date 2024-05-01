@@ -13,6 +13,7 @@ export default function FormContainer() {
   const setStatus = useFormStore((state) => state.setStatus);
   const setQuizzes = useQuizStore((state) => state.setQuizzes);
   const [streamContent, setStreamContent] = useState<string>("");
+  const [timer, setTimer] = useState(5);
 
   async function generateQuiz(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -23,6 +24,8 @@ export default function FormContainer() {
       method: "POST",
       body: formData,
     });
+
+    console.log(formData);
 
     if (res.body) {
       const reader = res.body.pipeThrough(new TextDecoderStream()).getReader();
@@ -53,7 +56,9 @@ export default function FormContainer() {
 
   return (
     <section>
-      {status === "idle" && <Form onSubmit={generateQuiz} />}
+      {status === "idle" && (
+        <Form timer={timer} onSetTimer={setTimer} onSubmit={generateQuiz} />
+      )}
       {status === "streaming" && <Loading />}
       {status === "done" && (
         <FormField>
@@ -71,7 +76,7 @@ export default function FormContainer() {
           </div>
         </FormField>
       )}
-      {status === "start" && <QuizContainer />}
+      {status === "start" && <QuizContainer timer={timer} />}
     </section>
   );
 }
