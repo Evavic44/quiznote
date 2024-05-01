@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-type StreamStatus = "idle" | "streaming" | "done" | "start";
+type StreamStatus = "idle" | "streaming" | "done" | "start" | "summary";
 
 interface StoreState {
   status: StreamStatus;

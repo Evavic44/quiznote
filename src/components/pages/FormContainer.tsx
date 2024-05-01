@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { useQuizStore } from "@/store/quiz";
 import QuizContainer from "./QuizContainer";
 import FormField from "./FormField";
+import Summary from "./Summary";
 
 export default function FormContainer() {
   const status = useFormStore((state) => state.status);
@@ -77,10 +78,7 @@ export default function FormContainer() {
         </FormField>
       )}
       {status === "start" && <QuizContainer timer={timer} />}
+      {status === "summary" && <Summary />}
     </section>
   );
 }
-
-// <FormField>
-//   <pre>{streamContent}</pre>
-// </FormField>
