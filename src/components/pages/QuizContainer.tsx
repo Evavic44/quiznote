@@ -10,14 +10,15 @@ import { useFormStore } from "@/store/form";
 export default function QuizContainer({ timer }: { timer: number }) {
   const quizzes = useQuizStore((state) => state.quizzes);
   const index = useQuizStore((state) => state.index);
-  const setIndex = useQuizStore((state) => state.setIndex);
+  const nextIndex = useQuizStore((state) => state.nextIndex);
   const selectedAnswer = useQuizStore((state) => state.selectedAnswer);
   const setSelectedAnswer = useQuizStore((state) => state.setSelectedAnswer);
-
+  const setStatus = useFormStore((state) => state.setStatus);
   const { id, question, answer, description, options, resources } =
     quizzes[index];
 
   const correctAnswer = answer === selectedAnswer;
+  const lastQuestion = index === quizzes.length - 1;
   console.log(timer);
 
   return (
@@ -57,15 +58,25 @@ export default function QuizContainer({ timer }: { timer: number }) {
           </em>
         )}
 
-        <button
-          onClick={() => {
-            setIndex(index + 1);
-            setSelectedAnswer("");
-          }}
-          className="flex mx-auto mt-16 bg-primary hover:bg-secondary text-white text-center px-4 py-3 rounded-full duration-200"
-        >
-          Next Question
-        </button>
+        {lastQuestion && (
+          <button
+            onClick={() => setStatus("summary")}
+            className="flex mx-auto mt-16 bg-primary hover:bg-secondary text-white text-center px-4 py-3 rounded-full duration-200"
+          >
+            View Summary
+          </button>
+        )}
+        {!lastQuestion && (
+          <button
+            onClick={() => {
+              nextIndex();
+              setSelectedAnswer("");
+            }}
+            className="flex mx-auto mt-16 bg-primary hover:bg-secondary text-white text-center px-4 py-3 rounded-full duration-200"
+          >
+            Next Question
+          </button>
+        )}
       </div>
     </FormField>
   );
