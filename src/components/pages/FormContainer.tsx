@@ -15,6 +15,13 @@ export default function FormContainer() {
   const [streamContent, setStreamContent] = useState<string>("");
   const [timer, setTimer] = useState(5);
 
+  useEffect(() => {
+    if (status === "done") {
+      const data = JSON.parse(streamContent);
+      setQuizzes(data);
+    }
+  }, [status, setQuizzes, streamContent]);
+
   async function generateQuiz(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setStatus("streaming");
@@ -46,13 +53,6 @@ export default function FormContainer() {
 
     setStatus("done");
   }
-
-  useEffect(() => {
-    if (status === "done") {
-      const data = JSON.parse(streamContent);
-      setQuizzes(data);
-    }
-  }, [status, setQuizzes, streamContent]);
 
   return (
     <section>
