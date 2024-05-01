@@ -6,7 +6,7 @@ import FormField from "./FormField";
 import Quiz from "./Quiz";
 import ScoreLine from "../shared/ScoreLine";
 import { useFormStore } from "@/store/form";
-import { useEffect, useMemo } from "react";
+import { useMemo } from "react";
 
 export default function QuizContainer({ timer }: { timer: number }) {
   const quizzes = useQuizStore((state) => state.quizzes);
@@ -35,7 +35,7 @@ export default function QuizContainer({ timer }: { timer: number }) {
           {question}
         </blockquote>
 
-        <ScoreLine />
+        {/* <ScoreLine /> */}
 
         <div className="flex flex-col gap-4 my-8">
           {Object.entries(options).map(([key, value]) => (

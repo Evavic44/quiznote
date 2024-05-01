@@ -16,15 +16,20 @@ interface StoreActions extends StoreState {
   setSelectedAnswer: (index: string) => void;
   setTimer: (index: number) => void;
   addPoints: () => void;
+  reset: () => void;
 }
 
-export const useQuizStore = create<StoreState & StoreActions>((set) => ({
+const initialState = {
   quizzes: [],
   index: 0,
   selectedAnswer: "",
   timer: 5,
   points: 1,
   totalPoints: 0,
+};
+
+export const useQuizStore = create<StoreState & StoreActions>((set) => ({
+  ...initialState,
   setQuizzes: (quizzes) => set({ quizzes, points: 100 / quizzes.length }),
   nextIndex: () =>
     set((state) => ({
@@ -38,4 +43,8 @@ export const useQuizStore = create<StoreState & StoreActions>((set) => ({
   setTimer: (timer) => set({ timer }),
   addPoints: () =>
     set((state) => ({ totalPoints: state.totalPoints + state.points })),
+  reset: () =>
+    set({
+      ...initialState,
+    }),
 }));

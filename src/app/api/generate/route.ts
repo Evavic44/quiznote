@@ -129,7 +129,6 @@ export async function POST(req: Request) {
       "Cache-Control": "no-cache",
       Connection: "keep-alive",
       "Transfer-Encoding": "chunked",
-      "Access-Control-Allow-Origin": "*",
     },
   });
 }

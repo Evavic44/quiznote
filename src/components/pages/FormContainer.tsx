@@ -13,6 +13,7 @@ export default function FormContainer() {
   const status = useFormStore((state) => state.status);
   const setStatus = useFormStore((state) => state.setStatus);
   const setQuizzes = useQuizStore((state) => state.setQuizzes);
+  const reset = useQuizStore((state) => state.reset);
   const [streamContent, setStreamContent] = useState<string>("");
   const [timer, setTimer] = useState(5);
 
@@ -23,10 +24,11 @@ export default function FormContainer() {
         setQuizzes(data);
       } catch (error) {
         alert(`Error generating quizzes, try again!`);
+        reset();
         setStatus("idle");
       }
     }
-  }, [status, setQuizzes, setStatus, streamContent]);
+  }, [status, setQuizzes, reset, setStatus, streamContent]);
 
   async function generateQuiz(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();

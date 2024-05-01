@@ -1,10 +1,15 @@
-import FormField from "./FormField";
+"use client";
+
 import { useFormStore } from "@/store/form";
+import FormField from "./FormField";
 import { useQuizStore } from "@/store/quiz";
+import { useRouter } from "next/navigation";
 
 export default function Summary() {
   const setStatus = useFormStore((state) => state.setStatus);
   const totalPoints = useQuizStore((state) => state.totalPoints);
+  const reset = useQuizStore((state) => state.reset);
+  const router = useRouter();
 
   return (
     <FormField>
@@ -21,7 +26,11 @@ export default function Summary() {
         </blockquote>
 
         <button
-          onClick={() => setStatus("idle")}
+          onClick={() => {
+            setStatus("idle");
+            reset();
+            router.push("/");
+          }}
           className="min-w-28 min-h-10 mx-auto bg-primary hover:bg-secondary text-white place-content-center text-center px-8 py-3 rounded-full duration-200 mb-10"
         >
           Exit
