@@ -4,7 +4,6 @@ import { useQuizStore } from "@/store/quiz";
 import CountdownTimer from "../shared/CountdownTimer";
 import FormField from "./FormField";
 import Quiz from "./Quiz";
-import { useState } from "react";
 
 export default function QuizContainer({ timer }: { timer: number }) {
   const quizzes = useQuizStore((state) => state.quizzes);
@@ -55,7 +54,10 @@ export default function QuizContainer({ timer }: { timer: number }) {
         )}
 
         <button
-          onClick={() => setIndex(index + 1)}
+          onClick={() => {
+            setIndex(index + 1);
+            setSelectedAnswer("");
+          }}
           className="flex mx-auto mt-16 bg-primary hover:bg-secondary text-white text-center px-4 py-3 rounded-full duration-200"
         >
           Next Question
