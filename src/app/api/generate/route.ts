@@ -95,32 +95,6 @@ export async function POST(req: Request) {
   }`,
   };
 
-  /*
-      {
-   \"id\": 1,
-   \"question\": \"\",
-   \"description\": \"\",
-   \"options\": {
-     \"a\": \"\",
-     \"b\": \"\",
-     \"c\": \"\",
-     \"d\": \"\"
-   },
-   \"answer\": \"\",
-   \"resources\": [
-     {
-       \"title\": \"\",
-       \"link\": \"\"
-     },
-     {
-       \"title\": \"\",
-       \"link\": \"\"
-     }
-   ]
-  }`,
-  };
-  */
-
   const filesBase64 = await Promise.all(
     files.map(async (file) => {
       const arrayBuffer = await file.arrayBuffer();
@@ -138,7 +112,7 @@ export async function POST(req: Request) {
   }));
 
   const data =
-    files.length < 0 ? filesData : [{ text: notes?.toString() || "" }];
+    files.length > 0 ? filesData : [{ text: notes?.toString() || "No notes" }];
 
   const body = {
     contents: [{ role: "user", parts: [text1, ...data, text2] }],
