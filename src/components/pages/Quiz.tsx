@@ -1,3 +1,5 @@
+import { useQuizStore } from "@/store/quiz";
+
 export default function Quiz({
   alpha,
   text,
@@ -15,7 +17,10 @@ export default function Quiz({
   selectedAnswer: string;
   onSetAnswer: (index: string) => void;
 }) {
+  const points = useQuizStore((state) => state.points);
+  const setPoints = useQuizStore((state) => state.setPoints);
   const hasAnswered = selectedAnswer !== "";
+  console.log(points);
 
   return (
     <label
@@ -41,7 +46,13 @@ export default function Quiz({
         name="option"
         type="radio"
         value={alpha}
-        onChange={(e) => onSetAnswer(e.target.value)}
+        onChange={(e) => {
+          onSetAnswer(e.target.value);
+          if (correctAnswer) {
+            console.log("Correct Points", points);
+            setPoints(+e.target.value);
+          }
+        }}
         disabled={hasAnswered}
         className={`ml-auto self-center h-4 w-4 rounded-full text-primary focus:ring-transparent border-gray-300`}
         // ${
