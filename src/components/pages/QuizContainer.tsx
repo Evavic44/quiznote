@@ -42,11 +42,8 @@ export default function QuizContainer({ timer }: { timer: number }) {
             <Quiz
               key={`${id}-${key}`}
               alpha={key}
-              id={+id}
               text={value}
-              answer={answer}
               quiz={quizzes[index]}
-              correctAnswer={correctAnswer}
             />
           ))}
         </div>
