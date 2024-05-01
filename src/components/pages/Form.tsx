@@ -3,7 +3,6 @@ import TabComponent from "@/components/shared/TabComponent";
 import FileNote from "@/components/pages/FileNote";
 import TextNote from "@/components/pages/TextNote";
 import FormField from "@/components/pages/FormField";
-import { useFormStore } from "@/store/form";
 
 export default function Form({
   onSubmit,
