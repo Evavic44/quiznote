@@ -3,7 +3,7 @@ import { PhotoIcon } from "@/components/icons";
 export default function FileNote() {
   return (
     <label
-      htmlFor="file-upload"
+      htmlFor="files"
       className="block mb-4 text-sm font-medium text-zinc-600 cursor-pointer"
     >
       Upload Note
@@ -15,17 +15,16 @@ export default function FileNote() {
           />
           <div className="mt-4 flex text-sm leading-6 text-zinc-600">
             <label
-              htmlFor="file-upload"
+              htmlFor="files"
               className="relative cursor-pointer rounded-md bg-white font-semibold text-primary focus-within:outline-none focus-within:ring-2 focus-within:ring-primary focus-within:ring-offset-2 hover:text-secondary"
             >
               <span>Upload a file</span>
               <input
-                id="file-upload"
-                name="file-upload"
+                id="files"
+                name="files"
                 type="file"
                 required
                 className="sr-only"
-                onChange={(e) => console.log(e.target.value)}
               />
             </label>
             <p className="pl-1">or drag and drop</p>

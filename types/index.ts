@@ -7,7 +7,7 @@ export interface FormType {
   timer: number;
 }
 
-export interface DataType {
+export interface QuizType {
   id: string;
   question: string;
   description: string;

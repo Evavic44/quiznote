@@ -15,7 +15,7 @@ export default function Navbar() {
 
   return (
     <header
-      className={`bg-white fixed top-0 left-0 w-full h-20 duration-200 ease-[cubic-bezier(0,0,0,1)] lg:border-b border-zinc-100 text-zinc-600 ${
+      className={`bg-white fixed top-0 left-0 w-full h-20 duration-200 ease-[cubic-bezier(0,0,0,1)] lg:border-b border-zinc-100 text-zinc-600 z-20 ${
         !toggleMenu
           ? "overflow-hidden"
           : "bg-white md:h-20 h-full overflow-visible"

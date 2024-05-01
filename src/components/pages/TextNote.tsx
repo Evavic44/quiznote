@@ -1,11 +1,12 @@
 export default function TextNote() {
   return (
-    <label htmlFor="message" className="block mb-3">
+    <label htmlFor="notes" className="block mb-3">
       <span className="block text-sm font-semibold text-zinc-600 mb-2">
         Note
       </span>
       <textarea
-        id="message"
+        id="notes"
+        name="notes"
         cols={30}
         rows={10}
         required

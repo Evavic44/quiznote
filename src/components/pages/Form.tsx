@@ -5,31 +5,32 @@ import TextNote from "@/components/pages/TextNote";
 import FormField from "@/components/pages/FormField";
 import { useFormStore } from "@/store/form";
 
-export default function Form() {
+export default function Form({
+  onSubmit,
+}: {
+  onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+}) {
   const [step, setStep] = useState(0);
-  const form = useFormStore((state) => state.form);
-
-  console.log("Form", form);
 
   return (
     <FormField>
-      <form action="#">
+      <form onSubmit={onSubmit}>
         <header className="text-center mb-10">
           <h2 className="text-lg font-semibold mb-1">Add Notes</h2>
           <p className="text-xs text-zinc-400">
             Paste your notes as text or upload a file
           </p>
         </header>
-
         <div className="flex flex-col gap-3 mb-4">
           <TabComponent step={step} onSetStep={setStep}>
-            <label htmlFor="subject" className="block mb-3">
+            <label htmlFor="topic" className="block mb-3">
               <span className="block text-sm font-semibold text-zinc-600 mb-2">
                 Topic
               </span>
               <input
                 type="text"
-                id="subject"
+                name="topic"
+                id="topic"
                 placeholder="Object-oriented programming in Java"
                 className="font-geistmono appearance-none w-full p-3 border border-zinc-200 placeholder-zinc-400 text-zinc-700 rounded-md focus:outline-none focus:ring-zinc-300 text-sm"
               />
@@ -65,6 +66,7 @@ export default function Form() {
               name="quizCount"
               id="quizCount"
             >
+              <option value="5">5</option>
               <option value="10">10</option>
               <option value="15">15</option>
               <option value="20">20</option>
