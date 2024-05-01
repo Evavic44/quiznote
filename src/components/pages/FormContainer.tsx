@@ -18,10 +18,15 @@ export default function FormContainer() {
 
   useEffect(() => {
     if (status === "done") {
-      const data = JSON.parse(streamContent);
-      setQuizzes(data);
+      try {
+        const data = JSON.parse(streamContent);
+        setQuizzes(data);
+      } catch (error) {
+        alert(`Error generating quizzes, try again!`);
+        setStatus("idle");
+      }
     }
-  }, [status, setQuizzes, streamContent]);
+  }, [status, setQuizzes, setStatus, streamContent]);
 
   async function generateQuiz(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -32,8 +37,6 @@ export default function FormContainer() {
       method: "POST",
       body: formData,
     });
-
-    console.log(formData);
 
     if (res.body) {
       const reader = res.body.pipeThrough(new TextDecoderStream()).getReader();

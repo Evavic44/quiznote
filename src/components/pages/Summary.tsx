@@ -1,10 +1,10 @@
-import { useRouter } from "next/navigation";
 import FormField from "./FormField";
 import { useFormStore } from "@/store/form";
+import { useQuizStore } from "@/store/quiz";
 
 export default function Summary() {
-  const router = useRouter();
   const setStatus = useFormStore((state) => state.setStatus);
+  const totalPoints = useQuizStore((state) => state.totalPoints);
 
   return (
     <FormField>
@@ -13,12 +13,11 @@ export default function Summary() {
           Quiz Completed!
         </h1>
         <p className="text-sm text-zinc-600  max-w-sm">
-          You scored x out of x points. Read our final analysis about how you
-          can improve below
+          You scored {totalPoints} out of 100 points.
         </p>
 
         <blockquote className="font-geistmono font-bold tracking-widest text-5xl my-6">
-          160/200
+          {totalPoints}/100
         </blockquote>
 
         <button

@@ -1,4 +1,5 @@
 import { useQuizStore } from "@/store/quiz";
+import { QuizType } from "../../../types";
 
 export default function Quiz({
   alpha,
@@ -6,21 +7,21 @@ export default function Quiz({
   id,
   answer,
   correctAnswer,
-  onSetAnswer,
-  selectedAnswer,
+  quiz,
 }: {
   alpha: string;
   text: string;
   id: number;
   answer: string;
   correctAnswer: boolean;
-  selectedAnswer: string;
-  onSetAnswer: (index: string) => void;
+  quiz: QuizType;
 }) {
+  const setSelectedAnswer = useQuizStore((state) => state.setSelectedAnswer);
+  const selectedAnswer = useQuizStore((state) => state.selectedAnswer);
+
   const points = useQuizStore((state) => state.points);
-  const setPoints = useQuizStore((state) => state.setPoints);
+  const addPoints = useQuizStore((state) => state.addPoints);
   const hasAnswered = selectedAnswer !== "";
-  console.log(points);
 
   return (
     <label
@@ -47,10 +48,9 @@ export default function Quiz({
         type="radio"
         value={alpha}
         onChange={(e) => {
-          onSetAnswer(e.target.value);
-          if (correctAnswer) {
-            console.log("Correct Points", points);
-            setPoints(+e.target.value);
+          setSelectedAnswer(e.target.value);
+          if (e.target.value === quiz.answer) {
+            addPoints();
           }
         }}
         disabled={hasAnswered}

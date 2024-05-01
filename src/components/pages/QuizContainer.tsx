@@ -6,20 +6,23 @@ import FormField from "./FormField";
 import Quiz from "./Quiz";
 import ScoreLine from "../shared/ScoreLine";
 import { useFormStore } from "@/store/form";
+import { useEffect, useMemo } from "react";
 
 export default function QuizContainer({ timer }: { timer: number }) {
   const quizzes = useQuizStore((state) => state.quizzes);
   const index = useQuizStore((state) => state.index);
-  const nextIndex = useQuizStore((state) => state.nextIndex);
-  const selectedAnswer = useQuizStore((state) => state.selectedAnswer);
-  const setSelectedAnswer = useQuizStore((state) => state.setSelectedAnswer);
-  const setStatus = useFormStore((state) => state.setStatus);
   const { id, question, answer, description, options, resources } =
     quizzes[index];
 
-  const correctAnswer = answer === selectedAnswer;
+  const nextIndex = useQuizStore((state) => state.nextIndex);
+  const selectedAnswer = useQuizStore((state) => state.selectedAnswer);
+  const setStatus = useFormStore((state) => state.setStatus);
+
+  const correctAnswer = useMemo(() => {
+    return answer === selectedAnswer;
+  }, [answer, selectedAnswer]);
+
   const lastQuestion = index === quizzes.length - 1;
-  console.log(timer);
 
   return (
     <FormField>
@@ -42,8 +45,7 @@ export default function QuizContainer({ timer }: { timer: number }) {
               id={+id}
               text={value}
               answer={answer}
-              onSetAnswer={setSelectedAnswer}
-              selectedAnswer={selectedAnswer}
+              quiz={quizzes[index]}
               correctAnswer={correctAnswer}
             />
           ))}
@@ -70,7 +72,6 @@ export default function QuizContainer({ timer }: { timer: number }) {
           <button
             onClick={() => {
               nextIndex();
-              setSelectedAnswer("");
             }}
             className="flex mx-auto mt-16 bg-primary hover:bg-secondary text-white text-center px-4 py-3 rounded-full duration-200"
           >
