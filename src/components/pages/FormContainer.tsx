@@ -4,6 +4,7 @@ import { useFormStore } from "@/store/form";
 import Form from "./Form";
 import FormField from "@/components/pages/FormField";
 import Loading from "@/components/shared/Loading";
+import QuizContainer from "./QuizContainer";
 
 export default function FormContainer() {
   const status = useFormStore().status;
@@ -11,8 +12,9 @@ export default function FormContainer() {
 
   return (
     <section>
-      {status === "input" && <Form />}
+      {/* {status === "input" && <Form />} */}
       {/* {status === "loading" && <Loading />} */}
+      <QuizContainer />
     </section>
   );
 }
