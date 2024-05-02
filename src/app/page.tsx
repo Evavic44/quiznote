@@ -12,7 +12,7 @@ export default async function Home() {
       <Container className="mt-40">
         <Header
           title="Studying Doesn't Have to be Boring!"
-          description="Turn your notes and textbook into fun quizzes that can help you learn better and faster"
+          description="Transform your notes or study materials into interactive quizzes to help maximize learning retention"
         />
       </Container>
       <FormContainer />

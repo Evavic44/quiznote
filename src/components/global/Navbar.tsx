@@ -48,10 +48,11 @@ export default function Navbar() {
         <div className="order-3">
           <div className="md:flex hidden items-center gap-x-6">
             <Button
-              text="56 Stars"
-              url="https://github.com/Evavic44/fun-notes"
+              text="GitHub"
+              url="https://github.com/Evavic44/quiznote"
               icon={<GithubIcon />}
               external
+              theme="primary"
             />
           </div>
           <HamburgerButton toggleMenu={toggleMenu} onToggle={setToggleMenu} />

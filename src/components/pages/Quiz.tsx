@@ -48,10 +48,9 @@ export default function Quiz({
       </div>{" "}
       <p className="select-none text-sm">{text}</p>
       <input
-        id={alpha}
-        name="option"
         type="radio"
         value={alpha}
+        id={alpha}
         onChange={(e) => {
           setSelectedAnswer(e.target.value);
           console.log("Quiz Answer: ", quiz.answer, "Alpha: ", alpha);

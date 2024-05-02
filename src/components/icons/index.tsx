@@ -226,9 +226,9 @@ export function DocumentIcon(props: SVGAttributes<SVGElement>) {
 export function BugIcon(props: SVGAttributes<SVGElement>) {
   return (
     <svg
-      fill="#777777"
-      width={14}
-      height={14}
+      fill="#b4b4b4"
+      width={12}
+      height={12}
       viewBox="0 0 512 512"
       xmlns="http://www.w3.org/2000/svg"
     >
