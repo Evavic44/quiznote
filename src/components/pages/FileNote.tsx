@@ -21,7 +21,7 @@ export default function FileNote() {
               htmlFor="files"
               className="relative cursor-pointer rounded-md bg-white font-semibold text-primary focus-within:outline-none focus-within:ring-2 focus-within:ring-primary focus-within:ring-offset-2 hover:text-secondary"
             >
-              <span>{file?.name || `Upload a file`}</span>
+              <span>{file?.name || `Upload a PDF file`}</span>
               <input
                 id="files"
                 name="files"
@@ -33,12 +33,10 @@ export default function FileNote() {
                 }}
               />
             </label>
-            {!file && <p className="pl-1">or drag and drop</p>}
+            {/* {!file && <p className="pl-1">preferred formats include:</p>} */}
           </div>
           {!file && (
-            <p className="text-xs leading-5 text-zinc-600">
-              PNG, JPG, PDF up to 7MB
-            </p>
+            <p className="text-xs leading-5 text-zinc-600">Up to 7MB</p>
           )}
         </div>
       </div>

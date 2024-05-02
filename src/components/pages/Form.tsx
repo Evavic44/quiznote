@@ -87,6 +87,7 @@ export default function Form({
               value={timer}
               onChange={(e) => onSetTimer(+e.target.value)}
             >
+              <option value="1">1 min</option>
               <option value="5">5 min</option>
               <option value="10">10 min </option>
               <option value="15">15 min</option>
