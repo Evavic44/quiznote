@@ -11,7 +11,7 @@ export default function Form({
 }: {
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
   timer: number;
-  onSetTimer: Dispatch<SetStateAction<number>>;
+  onSetTimer: (index: number) => void;
 }) {
   const [step, setStep] = useState(0);
 
@@ -87,6 +87,7 @@ export default function Form({
               value={timer}
               onChange={(e) => onSetTimer(+e.target.value)}
             >
+              <option value="1">1 min</option>
               <option value="5">5 min</option>
               <option value="10">10 min </option>
               <option value="15">15 min</option>

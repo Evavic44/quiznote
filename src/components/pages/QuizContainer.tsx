@@ -5,10 +5,11 @@ import CountdownTimer from "../shared/CountdownTimer";
 import FormField from "./FormField";
 import Quiz from "./Quiz";
 import ScoreLine from "../shared/ScoreLine";
+import { useTimerStore } from "@/store/timer";
 import { useFormStore } from "@/store/form";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 
-export default function QuizContainer({ timer }: { timer: number }) {
+export default function QuizContainer() {
   const quizzes = useQuizStore((state) => state.quizzes);
   const index = useQuizStore((state) => state.index);
   const { id, question, answer, description, options, resources } =
@@ -17,6 +18,8 @@ export default function QuizContainer({ timer }: { timer: number }) {
   const nextIndex = useQuizStore((state) => state.nextIndex);
   const selectedAnswer = useQuizStore((state) => state.selectedAnswer);
   const setStatus = useFormStore((state) => state.setStatus);
+  const timer = useTimerStore((state) => state.timer);
+  const [timeLeft, setTimeLeft] = useState(timer * 60);
 
   const correctAnswer = useMemo(() => {
     return answer === selectedAnswer;
@@ -28,7 +31,11 @@ export default function QuizContainer({ timer }: { timer: number }) {
     <FormField>
       <div key={id}>
         <div className="flex flex-col mb-4">
-          <CountdownTimer minutes={timer} />
+          <CountdownTimer
+            minutes={timer}
+            timeLeft={timeLeft}
+            setTimeLeft={setTimeLeft}
+          />
         </div>
 
         <blockquote className="max-w-md mx-auto text-center font-semibold text-xl leading-relaxed text-zinc-700 tracking-tight mt-12">
