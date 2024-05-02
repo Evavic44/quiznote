@@ -11,7 +11,7 @@ export default function Form({
 }: {
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
   timer: number;
-  onSetTimer: Dispatch<SetStateAction<number>>;
+  onSetTimer: (index: number) => void;
 }) {
   const [step, setStep] = useState(0);
 

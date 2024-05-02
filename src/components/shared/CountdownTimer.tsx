@@ -1,12 +1,13 @@
 import { useFormStore } from "@/store/form";
-import { useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useEffect } from "react";
 
 interface TimerProps {
   minutes: number;
+  timeLeft: number;
+  setTimeLeft: Dispatch<SetStateAction<number>>;
 }
 
-export default function CountdownTimer({ minutes }: TimerProps) {
-  const [timeLeft, setTimeLeft] = useState(minutes * 60);
+export default function CountdownTimer({ timeLeft, setTimeLeft }: TimerProps) {
   const setStatus = useFormStore((state) => state.setStatus);
 
   useEffect(() => {
@@ -15,7 +16,7 @@ export default function CountdownTimer({ minutes }: TimerProps) {
     }, 1000);
 
     return () => clearInterval(timer);
-  }, []);
+  }, [setTimeLeft]);
 
   const displayMinutes = Math.floor(timeLeft / 60);
   const displaySeconds = timeLeft % 60;

@@ -12,6 +12,7 @@ export default function Loading() {
           width={50}
           height={50}
           className="block mb-3 rounded-full bg-sunny"
+          unoptimized
         />
         <h2 className="font-semibold tracking-tight text-center text-zinc-600">
           Generating Quiz...

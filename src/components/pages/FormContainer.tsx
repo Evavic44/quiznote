@@ -5,6 +5,7 @@ import Form from "./Form";
 import Loading from "@/components/shared/Loading";
 import { useEffect, useState } from "react";
 import { useQuizStore } from "@/store/quiz";
+import { useTimerStore } from "@/store/timer";
 import QuizContainer from "./QuizContainer";
 import FormField from "./FormField";
 import Summary from "./Summary";
@@ -15,7 +16,8 @@ export default function FormContainer() {
   const setQuizzes = useQuizStore((state) => state.setQuizzes);
   const reset = useQuizStore((state) => state.reset);
   const [streamContent, setStreamContent] = useState<string>("");
-  const [timer, setTimer] = useState(5);
+  const timer = useTimerStore((state) => state.timer);
+  const setTimer = useTimerStore((state) => state.setTimer);
 
   useEffect(() => {
     if (status === "done") {
@@ -82,7 +84,7 @@ export default function FormContainer() {
           </div>
         </FormField>
       )}
-      {status === "start" && <QuizContainer timer={timer} />}
+      {status === "start" && <QuizContainer />}
       {status === "summary" && <Summary />}
     </section>
   );
