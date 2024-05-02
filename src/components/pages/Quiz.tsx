@@ -53,7 +53,6 @@ export default function Quiz({
         id={alpha}
         onChange={(e) => {
           setSelectedAnswer(e.target.value);
-          console.log("Quiz Answer: ", quiz.answer, "Alpha: ", alpha);
 
           if (e.target.value === quiz.answer) {
             addPoints();

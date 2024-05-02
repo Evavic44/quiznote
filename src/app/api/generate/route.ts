@@ -79,7 +79,7 @@ export async function POST(req: Request) {
   };
   const text2 = {
     text: `You response should be in JSON as an array of the object below. Respond with ${
-      totalQuizQuestions || 20
+      totalQuizQuestions || 5
     } different questions.
   {
    \"id\": 1,
