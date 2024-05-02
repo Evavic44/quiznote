@@ -64,15 +64,14 @@ export default function QuizContainer() {
           </em>
         )}
 
-        {lastQuestion && (
+        {lastQuestion ? (
           <button
             onClick={() => setStatus("summary")}
             className="flex mx-auto mt-16 bg-primary hover:bg-secondary text-white text-center px-4 py-3 rounded-full duration-200"
           >
             View Summary
           </button>
-        )}
-        {!lastQuestion && (
+        ) : (
           <button
             onClick={() => {
               nextIndex();

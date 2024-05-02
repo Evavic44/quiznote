@@ -27,6 +27,7 @@ export default function FormContainer() {
       } catch (error) {
         alert(`Error generating quizzes, try again!`);
         reset();
+        setStreamContent("");
         setStatus("idle");
       }
     }
@@ -35,6 +36,7 @@ export default function FormContainer() {
   async function generateQuiz(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setStatus("streaming");
+    setStreamContent("");
 
     const formData = new FormData(e.currentTarget);
     const res = await fetch("/api/generate", {
