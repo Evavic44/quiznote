@@ -9,25 +9,38 @@
 <img src="/public/images/cover.png" alt="cover image" />
 </div>
 
+## Demo Video
+
+[![Quiznote Demo Video](./public/images/cover.png)](https://youtu.be/ek5dUA8Db_w?si=V_9dNpyM2xk0CW5a)
+
 ## Technologies
 
 - 🎯 [NextJS](https://nextjs.org) - UI framework
 - ☑️ [Vercel](https://vercel.com) - Hosting and deployment
 - 💅🏽 [TailwindCSS](https://tailwindcss.com) /CSS - Styling and UI
-- 🤖 [Gemini](httpps://gemini.google.com) / AI API
+- 🤖 [Gemini](https://gemini.google.com) / AI API
 
 ## Run Project Locally
 
 Follow the steps below to run quiznote locally on your machine
 
-- Rename `.env.example` to `.env`
-- Get your private keys from [google cloud](https://cloud.google.com)
-- Set the value of the `NEXT_PUBLIC_GOOGLE_CLOUD_ID` and `NEXT_PUBLIC_PROJECT_ID` variables.
+> [!note]
+> For the Google AI Hackathon judges, please ignore the steps below and insert the `GOOGLE_SERVICE_KEY` sent via the test email into a `.env.locale` file to start the program.
+
+- `git clone https://github.com/Evavic44/quiznote`
+
+- Rename `.env.example` to `.env.local`
+- Get your private keys from [google cloud IAM & Admin](https://cloud.google.com)
+- Create a project that has access to all Vertext AI resource
+- Export the service account key to `JSON`
+- convert the `JSON` content to `base64`
+- Set the value of `GOOGLE_SERVICE_KEY` to the Base64 JSON
 
 ```bash
-git clone https://github.com/Evavic44/quiznote
 
 cd quiznote
+
+npm install
 
 npm run dev
 ```
@@ -43,8 +56,10 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to see the r
 | [`components`](./src/components/)             | Where components are stored                   |
 | [`store`](./src/store/)                       | State management store                        |
 
+<br /><br />
+
 <div align="center">
   <p>Built for the <a href="https://googleai.devpost.com/?ref_feature=challenge&ref_medium=discover">Google AI Hackathon</a></p>
   <p>Powered by</p>
-  <a href="https://gemini.google.com"><img src="/public/images/gemini.png" width="60px"></a>
+  <a href="https://gemini.google.com"><img src="/public/images/gemini.png" width="150px"></a>
 </div>
