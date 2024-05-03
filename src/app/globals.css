@@ -7,6 +7,16 @@
 
 /* Style progess bar background color */
 progress::-moz-progress-bar,
-progress::-webkit-progress-bar {
+progress::-webkit-progress-bar,
+progress::-webkit-progress-value {
+  appearance: none;
   background-color: #0e85f2;
+}
+
+progress[value]::-webkit-progress-bar {
+  background-color: #eee;
+}
+
+progress[value]::-webkit-progress-value {
+  background: #0e85f2;
 }
