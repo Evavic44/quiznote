@@ -6,10 +6,17 @@ import {
 import { StreamingTextResponse } from "ai";
 import { NextResponse } from "next/server";
 
+const credentials = JSON.parse(
+  Buffer.from(process.env.GOOGLE_SERVICE_KEY || "", "base64").toString()
+);
+
 // // Initialize Vertex with your Cloud project and location
 const vertex_ai = new VertexAI({
   project: "teak-flash-361520",
   location: "europe-west3",
+  googleAuthOptions: {
+    credentials,
+  },
 });
 const model = "gemini-1.5-pro-preview-0409";
 
