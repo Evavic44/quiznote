@@ -6,12 +6,12 @@
 <h1>Quiznote</h1>
 <p>The ultimate learner's companior for transforming notes into interactive quizzes to help maximize learning retention</p>
 <!-- TODO: Replace with demo video -->
-<img src="/public/images/cover.png" alt="cover image" />
+<a href="https://youtu.be/ek5dUA8Db_w?si=V_9dNpyM2xk0CW5a" target="_blank"><img src="/public/images/cover.png" alt="cover image" /></a>
 </div>
 
 ## Demo Video
 
-[![Quiznote Demo Video](./public/images/cover.png)](https://youtu.be/ek5dUA8Db_w?si=V_9dNpyM2xk0CW5a)
+[Quiznote Demo Video](https://youtu.be/ek5dUA8Db_w?si=V_9dNpyM2xk0CW5a)
 
 ## Technologies
 
@@ -25,7 +25,7 @@
 Follow the steps below to run quiznote locally on your machine
 
 > [!note]
-> For the Google AI Hackathon judges, please ignore the steps below and insert the `GOOGLE_SERVICE_KEY` sent via the test email into a `.env.locale` file to start the program.
+> For the Google AI Hackathon judges, please ignore the steps below and insert the `GOOGLE_SERVICE_KEY` sent via the test email into a `.env.local` file to start the program.
 
 - `git clone https://github.com/Evavic44/quiznote`
 
