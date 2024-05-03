@@ -6,6 +6,9 @@ import {
 import { StreamingTextResponse } from "ai";
 import { NextResponse } from "next/server";
 
+export const runtime = 'edge'; // or 'nodejs' which uses Serverless Functions
+export const dynamic = 'force-dynamic'; // always run dynamically
+
 const credentials = JSON.parse(
   Buffer.from(process.env.GOOGLE_SERVICE_KEY || "", "base64").toString()
 );
@@ -106,7 +109,6 @@ export async function POST(req: Request) {
     files.map(async (file) => {
       const arrayBuffer = await file.arrayBuffer();
       const buffer = Buffer.from(arrayBuffer);
-      // return "data:" + file.type + ";base64," + buffer.toString("base64");
       return buffer.toString("base64");
     })
   );
