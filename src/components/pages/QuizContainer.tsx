@@ -4,10 +4,10 @@ import { useQuizStore } from "@/store/quiz";
 import CountdownTimer from "../shared/CountdownTimer";
 import FormField from "./FormField";
 import Quiz from "./Quiz";
-import ScoreLine from "../shared/ScoreLine";
 import { useTimerStore } from "@/store/timer";
 import { useFormStore } from "@/store/form";
 import { useMemo, useState } from "react";
+import ProgressBar from "../shared/ProgressBar";
 
 export default function QuizContainer() {
   const quizzes = useQuizStore((state) => state.quizzes);
@@ -38,11 +38,11 @@ export default function QuizContainer() {
           />
         </div>
 
+        <ProgressBar />
+
         <blockquote className="max-w-md mx-auto text-center font-semibold text-xl leading-relaxed text-zinc-700 tracking-tight mt-12">
           {question}
         </blockquote>
-
-        {/* <ScoreLine /> */}
 
         <div className="flex flex-col gap-4 my-8">
           {Object.entries(options).map(([key, value]) => (
