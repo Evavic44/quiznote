@@ -6,6 +6,9 @@ import {
 import { StreamingTextResponse } from "ai";
 import { NextResponse } from "next/server";
 
+export const maxDuration = 120;
+export const dynamic = "force-dynamic";
+
 const credentials = JSON.parse(
   Buffer.from(process.env.GOOGLE_SERVICE_KEY || "", "base64").toString()
 );
